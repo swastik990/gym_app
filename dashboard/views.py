@@ -11,3 +11,4 @@ def dashboard_view(request):
         "categories": categories,
     }
     return render(request, "dashboard.html", context)
+
