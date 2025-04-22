@@ -23,7 +23,12 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'login' %}">Gym Records</a>
+            <a class="navbar-brand" href="{% url 'home' %}">
+                {% if website_settings.logo %}
+                <img src="{{ website_settings.logo.url }}" alt="{{ website_settings.website_name }}" height="30" style="border-radius: 50%;">
+                {% endif %}
+                {{ website_settings.website_name }}
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
