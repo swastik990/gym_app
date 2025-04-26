@@ -1,6 +1,8 @@
-from django.shortcuts import render
-from dashboard.models import Category
+from django.shortcuts import render, redirect
+from .models import Category
 from members.models import Member
+from django.contrib import messages
+from django.contrib.auth.decorators import user_passes_test
 
 def dashboard_view(request):
     # Fetch all categories with their member counts
@@ -16,3 +18,14 @@ def dashboard_view(request):
         "disabled_members": disabled_members,
     }
     return render(request, "dashboard.html", context)
+
+from django.contrib.auth.decorators import user_passes_test
+
+@user_passes_test(lambda u: u.is_superuser)
+def create_category_view(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        Category.objects.create(name=name)
+        messages.success(request, "Category created successfully.")
+        return redirect("dashboard")
+    return render(request, "create_category.html")

@@ -29,5 +29,7 @@
     </tbody>
 </table>
 
+{% if user.is_superuser or user.staff.category_id == category.id %}
 <a href="{% url 'add_member' %}" class="btn btn-primary mt-3">Add New Member</a>
+{% endif %}
 {% endblock %}

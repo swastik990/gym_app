@@ -12,42 +12,34 @@
         <input type="text" class="form-control" id="id_name" name="name"
                value="{{ member.name|default_if_none:'' }}" required>
     </div>
-
+    
     <!-- Category Field -->
     <div class="mb-3">
         <label for="id_category" class="form-label">Category</label>
-        <select class="form-select" id="id_category" name="category" required>
-            {% for category in categories %}
-                <option value="{{ category.id }}" 
-                        {% if member.category_id == category.id %}selected{% endif %}>
-                    {{ category.name }}
-                </option>
-            {% endfor %}
-        </select>
+        <input type="text" class="form-control" id="id_category" value="{{ category.name }}" readonly>
+        <input type="hidden" name="category" value="{{ category.id }}">
     </div>
 
-    <!-- Subscription Start Date Field -->
+
+    <!-- Subscription Start Date -->
     <div class="mb-3">
         <label for="id_subscription_start_date" class="form-label">Subscription Start Date</label>
-        <input type="date" class="form-control" id="id_subscription_start_date" name="subscription_start_date"
-               value="{{ member.subscription_start_date|date:'Y-m-d'|default_if_none:'' }}" required>
+        <input type="date" class="form-control" id="id_subscription_start_date" name="subscription_start_date" required>
     </div>
 
-    <!-- Subscription End Date Field -->
+    <!-- Subscription End Date -->
     <div class="mb-3">
         <label for="id_subscription_end_date" class="form-label">Subscription End Date</label>
-        <input type="date" class="form-control" id="id_subscription_end_date" name="subscription_end_date"
-               value="{{ member.subscription_end_date|date:'Y-m-d'|default_if_none:'' }}" required>
+        <input type="date" class="form-control" id="id_subscription_end_date" name="subscription_end_date" required>
     </div>
 
-    <!-- Contact Info Field -->
+    <!-- Contact Info -->
     <div class="mb-3">
         <label for="id_contact_info" class="form-label">Contact Info</label>
-        <input type="text" class="form-control" id="id_contact_info" name="contact_info"
-               value="{{ member.contact_info|default_if_none:'' }}">
+        <input type="text" class="form-control" id="id_contact_info" name="contact_info">
     </div>
 
     <!-- Submit Button -->
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-primary">Add Member</button>
 </form>
 {% endblock %}
